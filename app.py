@@ -1,7 +1,7 @@
 from src import App
-from src import core
-from src.database import Database
 import sys
+
+__author__ = "Jean Loui Bernard Silva de Jesus"
 
 if __name__ == "__main__":
     application = App(sys.argv)

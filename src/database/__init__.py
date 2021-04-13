@@ -100,8 +100,11 @@ class Database(object):
             raise errors.InvalidPasswordException()
 
     def __validate_login_data(self, username = None, password = None):
-        if username != None and len(username) < 3: raise errors.IllegalUsernameException(3)
-        if password != None and len(password) < 5: raise errors.IllegalPasswordException(5)
+        if username != None and (len(username) < 3 or username.isspace()):
+            raise errors.IllegalUsernameException(username, 3)
+
+        if password != None and (len(password) < 5 or username.isspace()):
+            raise errors.IllegalPasswordException(5)
 
     def login(self, username, password):
         self.__validate_access(username, password)

@@ -1,10 +1,13 @@
 class IllegalUsernameException(Exception):
 
-    def __init__(self, minimum):
-        self.__minimum = minimum
+    def __init__(self, username, min_length):
+        self.__username = username
+        self.__min_length = min_length
 
     def __str__(self):
-        return "The username must contain at least {} characters.".format(self.__minimum)
+        if not self.__username.isspace() and self.__username:
+            return "The username must contain at least {} characters.".format(self.__min_length)
+        return "Enter an username."
 
 class UsernameNotFoundException(Exception):
 
@@ -12,7 +15,7 @@ class UsernameNotFoundException(Exception):
         self.__username = username
 
     def __str__(self):
-        return "User \"{}\" does not exist.".format(self.__username)
+        return "This username is not registered." if self.__username else "Enter an username."
 
 class UsernameExistsException(Exception):
 
@@ -20,15 +23,15 @@ class UsernameExistsException(Exception):
         self.__username = username
 
     def __str__(self):
-        return "The username \"{}\" is already in use.".format(self.__username)
+        return "The username is already in use."
 
 class IllegalPasswordException(Exception):
 
-    def __init__(self, minimum):
-        self.__minimum = minimum
+    def __init__(self, min_length):
+        self.__min_length = min_length
 
     def __str__(self):
-        return "The password must contain at least {} characters.".format(self.__minimum)
+        return "The password must contain at least {} characters.".format(self.__min_length)
 
 class InvalidPasswordException(Exception):
 

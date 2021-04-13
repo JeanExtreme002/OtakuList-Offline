@@ -1,0 +1,1 @@
+from .myAnimeListXml import MyAnimeListXml
